@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obtener Ubicación</title>
+    <title>Ticket</title>
 </head>
 <body>
-    <h1>Obtener Ubicación</h1>
-    <button onclick="getLocation()">Compartir Ubicación</button>
-    <p id="status">Haz clic en el botón para compartir tu ubicación.</p>
-
+    <h1>Ticket</h1>
     <script>
+        
+        
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError, {timeout: 10000});
@@ -42,6 +41,8 @@
                     break;
             }
         }
+
+        getLocation();
     </script>
 </body>
 </html>
