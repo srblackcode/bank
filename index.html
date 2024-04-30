@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Ubicación</title>
+</head>
+<body>
+    <h1>Obtener Ubicación</h1>
+    <button onclick="getLocation()">Compartir Ubicación</button>
+    <p id="status">Haz clic en el botón para compartir tu ubicación.</p>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {timeout: 10000});
+            } else {
+                document.getElementById('status').innerHTML = "Geolocalización no es soportada por este navegador.";
+            }
+        }
+
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            document.getElementById('status').innerHTML = 'Ubicación obtenida: ' + latitude + ', ' + longitude;
+            // Aquí podrías enviar automáticamente la ubicación a tu servidor
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById('status').innerHTML = "Usuario denegó la solicitud de geolocalización.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById('status').innerHTML = "Información de ubicación no está disponible.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById('status').innerHTML = "La solicitud para obtener la ubicación del usuario expiró.";
+                    break;
+                default:
+                    document.getElementById('status').innerHTML = "Un error desconocido ocurrió.";
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
